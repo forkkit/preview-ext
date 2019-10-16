@@ -1,12 +1,42 @@
 (function() {
 	var pad = document.querySelector("textarea#writer");
-	var previewOverlay = document.createElement("DIV");
+	var previewOverlay = document.createElement("div");
 	previewOverlay.id = "md-preview";
 	previewOverlay.style.cssText = "position: absolute; top: 0; left: 0; z-index: 20; width: 100%; min-height: 100vh; background-color: #fff;";
-	var previewArticle = document.createElement("ARTICLE");
+
+	// create and assemble the header
+	var previewHeader = document.createElement("header");
+	var previewHeading = document.createElement("h1");
+	previewHeading.id = "blog-title";
+	var previewHeadingLink = document.createElement("a");
+	previewHeadingLink.innerText = "Preview";
+	previewHeading.appendChild(previewHeadingLink);
+	previewHeader.appendChild(previewHeading);
+	
+	// create and assemble preview article body
+	var previewArticle = document.createElement("article");
 	previewArticle.id ="post-body";
 	previewArticle.classList = ['norm'];
+
+	// create and assemble preview footer
+	var previewFooter = document.createElement("footer");
+	var previewFooterHr = document.createElement("hr");
+	previewFooter.appendChild(previewFooterHr);
+	var previewFooterNav = document.createElement("nav");
+	var previewFooterNavP = document.createElement("p");
+	previewFooterNavP.style.cssText = "font-size: 0.9em;";
+	previewFooterNavP.innerText = "previewed with ";
+	previewFooterNav.appendChild(previewFooterNavP);
+	var previewFooterNavLink = document.createElement("a");
+	previewFooterNavLink.innerText = "view.as";
+	previewFooterNavLink.style.cssText = "color: #999;";
+	previewFooterNavP.appendChild(previewFooterNavLink);
+	previewFooter.appendChild(previewFooterNav);
+
+	// assemble the whole preview overlay
+	previewOverlay.appendChild(previewHeader);
 	previewOverlay.appendChild(previewArticle);
+	previewOverlay.appendChild(previewFooter);
 
 	async function showPreview() {
 		var rawPost = getRawPost();
