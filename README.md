@@ -1,7 +1,10 @@
 # Writefreely Previewer
 A browser extension to preview your posts
 
-Still very **beta**.
+This extension is in **beta**.
+
+## **Privacy Notice**
+This extension currently makes requests to pencil.writefree.ly with the contents of your post, that api then returns the HTML version for rendering. In future we intend to have the extension make requests against the current instance where possible.
 
 ## Installation
 Currently manual installation is required and should only be used for testing. First clone this repo, then load the extenstion:
