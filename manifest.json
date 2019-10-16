@@ -15,7 +15,17 @@
 		"tabs"
 	],
 	"browser_action": {
-	"default_title": "Markdown Preview"
+		"default_title": "Markdown Preview"
+	},
+	"commands": {
+		"_execute_browser_action": {
+			"suggested_key": {
+				"windows": "Ctrl+Space",
+				"mac": "Command+Space",
+				"chromeos": "Ctrl+Space",
+				"linux": "Ctrl+Space"
+			}
+		}
 	},
 	"background": {
 		"scripts": ["background.js"]
