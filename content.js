@@ -16,6 +16,7 @@
 	var previewHeaderNavBack = document.createElement("a");
 	previewHeaderNavBack.classList = ['xtra-feature'];
 	previewHeaderNavBack.innerText = "Back to Edit";
+	previewHeaderNavBack.style.cursor = "pointer";
 	previewHeaderNavBack.addEventListener('click', () => {
 		chrome.runtime.sendMessage({toggle: true});
 	} );
