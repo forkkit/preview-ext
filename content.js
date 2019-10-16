@@ -28,7 +28,7 @@
 	}
 
 	function getPostMarkdown(rawpost) {
-		const endpoint = "http://localhost:8080/api/generate/markdownify";
+		const endpoint = "https://pencil.writefree.ly/api/generate/markdownify";
 		var data = {
 			base_url: '',
 			raw_body: rawpost
