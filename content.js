@@ -91,7 +91,7 @@
 	}
 
 	function isSupported() {
-		return (document.querySelector("body#pad textarea#writer") !== null);
+		return (document.querySelector("textarea#writer") !== null);
 	}
 
 	// TODO: sender is never used
