@@ -108,3 +108,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 	}
 	return true;
 });
+
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+	if (request.toggle) {
+		togglePreview();
+	}
+});

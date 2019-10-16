@@ -12,7 +12,15 @@
 	previewHeadingLink.innerText = "Preview";
 	previewHeading.appendChild(previewHeadingLink);
 	previewHeader.appendChild(previewHeading);
-	
+	var previewHeaderNav = document.createElement("nav");
+	var previewHeaderNavBack = document.createElement("a");
+	previewHeaderNavBack.classList = ['xtra-feature'];
+	previewHeaderNavBack.innerText = "Back to Edit";
+	previewHeaderNavBack.addEventListener('click', () => {
+		chrome.runtime.sendMessage({toggle: true});
+	} );
+	previewHeaderNav.appendChild(previewHeaderNavBack);
+	previewHeader.appendChild(previewHeaderNav);
 	// create and assemble preview article body
 	var previewArticle = document.createElement("article");
 	previewArticle.id ="post-body";
