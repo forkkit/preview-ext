@@ -23,8 +23,10 @@ function togglePreview() {
 		// clear the preview instead
 		if (result && result.preview) {
 			chrome.tabs.sendMessage(currentTab.id, {preview: false});
+			updateIcon(false);
+		} else if (result && !result.preview) {
+			updateIcon(true);
 		}
-		updateIcon(!result.preview);
 	});
 }
 
@@ -84,6 +86,10 @@ function updateActiveTab() {
 chrome.tabs.onCreated.addListener(updateActiveTab);
 chrome.tabs.onUpdated.addListener(updateActiveTab);
 chrome.tabs.onActivated.addListener(updateActiveTab);
+
+chrome.windows.onFocusChanged.addListener(() => {
+	updateActiveTab();
+});
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
 	if (request.endpoint && request.data) {
