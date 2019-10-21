@@ -2,7 +2,19 @@
 	var pad = document.querySelector("textarea#writer");
 	var previewOverlay = document.createElement("div");
 	previewOverlay.id = "md-preview";
-	previewOverlay.style.cssText = "position: absolute; top: 0; left: 0; z-index: 20; width: 100%; min-height: 100vh; background-color: #fff;";
+	previewOverlay.style.cssText = "position: absolute; top: 0; left: 0; z-index: 1000; width: 100%; min-height: 100%; background-color: #fff;";
+	var previewModal = document.createElement("div");
+	previewModal.style.cssText = "box-shadow: 0 0 16px #000; margin: 20px; padding: 20px;";
+	previewOverlay.appendChild(previewModal);
+	var previewModalClose = document.createElement("button");
+	previewModalClose.id = "md-preview-close";
+	previewModalClose.innerText = "Close";
+	previewModalClose.title = "Close preview overlay and return to editing"
+	previewModalClose.style.cssText = "font-size: 1.6em; position: absolute; z-index: 1010; top: 40px; right: 40px; padding: 2px 8px; font-weight: bold; background-color: #fff; border: 2px solid #989898; color: #989898;"
+	previewModalClose.addEventListener('click', () => {
+		chrome.runtime.sendMessage({toggle: true});
+	});
+	previewModal.appendChild(previewModalClose);
 
 	// create and assemble the header
 	var previewHeader = document.createElement("header");
@@ -19,7 +31,7 @@
 	previewHeaderNavBack.style.cursor = "pointer";
 	previewHeaderNavBack.addEventListener('click', () => {
 		chrome.runtime.sendMessage({toggle: true});
-	} );
+	});
 	previewHeaderNav.appendChild(previewHeaderNavBack);
 	previewHeader.appendChild(previewHeaderNav);
 	// create and assemble preview article body
@@ -42,10 +54,10 @@
 	previewFooterNavP.appendChild(previewFooterNavLink);
 	previewFooter.appendChild(previewFooterNav);
 
-	// assemble the whole preview overlay
-	previewOverlay.appendChild(previewHeader);
-	previewOverlay.appendChild(previewArticle);
-	previewOverlay.appendChild(previewFooter);
+	// assemble the whole preview modal
+	previewModal.appendChild(previewHeader);
+	previewModal.appendChild(previewArticle);
+	previewModal.appendChild(previewFooter);
 
 	async function showPreview() {
 		var rawPost = getRawPost();
