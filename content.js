@@ -135,5 +135,10 @@
 			sendResponse({preview: false});
 		}
 	});
+	document.onkeyup = function(e){
+		if (e.key === "Escape" && isPreview()) {
+			chrome.runtime.sendMessage({toggle: true});
+		}
+	};
 })();
 
