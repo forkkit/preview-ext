@@ -66,6 +66,7 @@
 				return res.json();
 			});
 		previewArticle.innerHTML = result.body;
+		previewArticle.classList = [getPostFont()];
 		document.body.appendChild(previewOverlay);
 		document.body.id = "post";
 		pad.style.display = "none";
@@ -76,6 +77,11 @@
 		// writefreely pad
 		// body#pad textarea#writer
 		return pad.value;
+	}
+
+	function getPostFont() {
+		// assumes only one class as in templates/pad.tmpl
+		return pad.classList[0]
 	}
 
 	function getPostMarkdown(rawpost) {
