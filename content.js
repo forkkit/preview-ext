@@ -60,6 +60,7 @@
 	previewModal.appendChild(previewFooter);
 
 	async function showPreview() {
+		var scroll = pad.scrollTop / pad.scrollHeight;
 		var rawPost = getRawPost();
 		var result = await getPostMarkdown(rawPost)
 			.then((res) => {
@@ -70,6 +71,7 @@
 		document.body.appendChild(previewOverlay);
 		document.body.id = "post";
 		pad.style.display = "none";
+		window.scrollTo(0,(previewOverlay.offsetHeight*scroll) - 40);
 	}
 
 	function getRawPost() {
@@ -108,9 +110,11 @@
 	}
 
 	function clearPreview() {
+		var scroll = window.scrollY / previewOverlay.scrollHeight;
 		document.body.id = "pad";
 		pad.style.display = "block";
 		document.body.removeChild(previewOverlay);
+		pad.scrollTo(0, (pad.scrollHeight*scroll) + 40);
 	}
 
 	function isPreview() {
