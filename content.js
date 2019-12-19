@@ -72,6 +72,7 @@
 		document.body.id = "post";
 		pad.style.display = "none";
 		window.scrollTo(0,(previewOverlay.offsetHeight*scroll) - 40);
+		window.history.pushState({'preview': true},null,'#preview')
 	}
 
 	function getRawPost() {
@@ -137,7 +138,9 @@
 				sendResponse({preview: false});
 			}
 		} else if (msg.preview === false) {
-			clearPreview();
+			if (window.location.hash === "#preview") {
+				window.history.back();
+			};
 			sendResponse({preview: false});
 		} else if (msg.state === true) {
 			sendResponse({supported: isSupported(), preview: isPreview()});
@@ -149,6 +152,10 @@
 		if (e.key === "Escape" && isPreview()) {
 			chrome.runtime.sendMessage({toggle: true});
 		}
+	};
+
+	window.onpopstate = (e) => {
+		clearPreview();
 	};
 })();
 
