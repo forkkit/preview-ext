@@ -10,7 +10,8 @@
 		"96": "/icons/white-bg.svg",
 		"128": "/icons/white-bg.svg"
 	},
-	"permissions": [
+	"permissions": ["activeTab"],
+	"optional_permissions": [
 		"<all_urls>",
 		"tabs"
 	],
@@ -29,11 +30,5 @@
 	},
 	"background": {
 		"scripts": ["background.js"]
-	},
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["content.js"]
-		}
-	]
+	}
 }
