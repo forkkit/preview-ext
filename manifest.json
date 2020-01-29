@@ -2,17 +2,21 @@
 	"manifest_version": 2,
 	"name": "Writefreely Previewer",
 	"short_name": "wf-preview",
-	"description": "A markdown previewer for writefreely posts. Preview your thoughts in seconds.",
-	"version": "0.6",
+	"description": "A markdown previewer for writefreely posts and snap.as captions. Preview your thoughts in seconds.",
+	"version": "1",
 	"icons": {
-		"16": "/icons/white-bg.svg",
-		"48": "/icons/white-bg.svg",
-		"96": "/icons/white-bg.svg",
-		"128": "/icons/white-bg.svg"
+		"16": "icons/black-trans-16.png",
+		"19": "icons/black-trans-19.png",
+		"38": "icons/black-trans-38.png",
+		"48": "icons/black-trans-48.png"
 	},
 	"permissions": [
-		"<all_urls>",
-		"tabs"
+		"activeTab"
+	],
+	"optional_permissions": [
+		"tabs",
+		"http://*/",
+		"https://*/"
 	],
 	"browser_action": {
 		"default_title": "Markdown Preview"
@@ -29,11 +33,5 @@
 	},
 	"background": {
 		"scripts": ["background.js"]
-	},
-	"content_scripts": [
-		{
-			"matches": ["<all_urls>"],
-			"js": ["content.js"]
-		}
-	]
+	}
 }
